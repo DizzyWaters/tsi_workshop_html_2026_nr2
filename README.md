@@ -29,3 +29,13 @@ Original torch, egg, and combat slash SVG assets are in `assets/`.
 Animations respect the reduced-motion preference.
 
 Run game tests with `node --test tests/rogue.test.js`.
+
+## GitHub user search
+
+Use the GitHub search box to search public users via
+`https://api.github.com/search/users?q=QUERY&per_page=10`.
+The first ten matches appear as buttons. Select one to fetch their full profile
+from `/users/USERNAME`, including avatar, name, bio, and account statistics.
+No API key or installation is needed. Loading, empty results, timeout, and
+request errors are shown with a retry option. Anonymous GitHub requests are
+rate limited. The card stays aligned with the application form.

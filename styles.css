@@ -149,3 +149,20 @@ kbd { font: .8rem monospace; padding: 1px 4px; background: #344035; border-radiu
 .rogue-log { padding-left: 20px; font: .76rem/1.8 monospace; color: #9faf96; min-height: 7.2em; }
 @media (max-width: 800px) { .rogue-layout { grid-template-columns: 1fr; } .rogue-sidebar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; } .rogue-sidebar p { flex-basis: 100%; margin: 0; } .tile { font-size: clamp(10px, 2.8vw, 23px); } }
 @media (max-width: 600px) { .roguelike { padding: 18px 12px; } .dungeon { padding: 5px; } .rogue-heading h2 { font-size: 1.7rem; } .rogue-stats { font-size: .72rem; } }
+
+.github-profile { max-width: 800px; margin: 40px auto 0; background: #fffdf7; border: 1px solid var(--line); border-radius: 20px; padding: 36px; }
+.github-details { display: flex; align-items: center; gap: 22px; }
+.github-details[hidden], .github-actions button[hidden] { display: none; }
+.github-details img { border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.github-details p { overflow-wrap: anywhere; color: #64685c; }
+.github-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 18px; }
+.github-actions a { color: var(--accent); text-decoration: underline; font-weight: 600; }
+@media (max-width: 600px) { .github-profile { padding: 22px 18px; } .github-details { align-items: flex-start; flex-direction: column; } }
+
+.github-search { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.github-search-controls { display: flex; gap: 12px; }
+.github-search-controls input { min-width: 0; flex: 1; }
+.github-search-controls button { flex-shrink: 0; }
+.github-results { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.github-actions a[hidden] { display: none; }
+@media (max-width: 600px) { .github-search-controls { flex-direction: column; } }

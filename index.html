@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="rogue.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="github-profile.js" defer></script>
 </head>
 <body>
   <main>
@@ -143,6 +144,32 @@
       </div>
       <p class="help demo-note">Fictional classroom demo. Preview uses GET; sending to the Council uses POST with a different destination. These example routes require a server and do not process applications.</p>
     </form>
+    <section class="github-profile" aria-labelledby="github-title" aria-busy="false">
+      <p class="eyebrow">Find your community</p>
+      <h2 id="github-title">Search GitHub users</h2>
+      <form id="github-search" class="github-search" role="search">
+        <label for="github-query">Username or search query</label>
+        <div class="github-search-controls">
+          <input id="github-query" name="q" type="search" value="DizzyWaters" placeholder="e.g. DizzyWaters" maxlength="256" required>
+          <button type="submit">Search users</button>
+        </div>
+      </form>
+      <ul id="github-results" class="github-results" aria-label="GitHub user search results"></ul>
+      <p id="github-status" role="status">Enter a query to search GitHub.</p>
+      <div id="github-details" class="github-details" hidden>
+        <img id="github-avatar" width="96" height="96" alt="">
+        <div>
+          <h3 id="github-name"></h3>
+          <p id="github-bio"></p>
+          <p id="github-stats"></p>
+        </div>
+      </div>
+      <div class="github-actions">
+        <a id="github-link" href="https://github.com/DizzyWaters" hidden>View GitHub profile ↗</a>
+        <button id="github-retry" class="secondary" type="button" hidden>Retry request</button>
+      </div>
+      <noscript><p>Enable JavaScript to load the live GitHub profile.</p></noscript>
+    </section>
     <footer>Dragon Adoption Bureau · Established sometime before the last ice age.</footer>
   </main>
 </body>
