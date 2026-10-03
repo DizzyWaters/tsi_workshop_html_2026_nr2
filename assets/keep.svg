@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="500" viewBox="0 0 600 500" role="img" aria-label="Dragon above a moonlit castle">
+<defs><linearGradient id="night" x2="0" y2="1"><stop stop-color="#171921"/><stop offset="1" stop-color="#544039"/></linearGradient><linearGradient id="stone" x2="0" y2="1"><stop stop-color="#575052"/><stop offset="1" stop-color="#25242a"/></linearGradient><radialGradient id="moon"><stop stop-color="#eee0b5"/><stop offset="1" stop-color="#b39b70"/></radialGradient><pattern id="masonry" width="34" height="22" patternUnits="userSpaceOnUse"><path d="M0 0H34M0 22H34M17 0V22" stroke="#c2ac8b" stroke-opacity=".12" fill="none"/></pattern></defs>
+<rect width="600" height="500" fill="url(#night)"/>
+<g fill="#d5bf96" opacity=".6"><circle cx="60" cy="60" r="1"/><circle cx="190" cy="42" r="1.5"/><circle cx="340" cy="65" r="1"/><circle cx="533" cy="54" r="1"/><circle cx="554" cy="187" r="1.5"/><circle cx="94" cy="190" r="1"/></g>
+<circle cx="427" cy="124" r="77" fill="#bda878" opacity=".06"/><circle cx="427" cy="124" r="60" fill="url(#moon)"/><g fill="#867759" opacity=".18"><circle cx="450" cy="96" r="18"/><circle cx="402" cy="137" r="25"/></g>
+<path d="M0 318L95 190L164 291L250 211L349 331L489 224L600 306V500H0" fill="#34343d"/><path d="M0 375L145 286L245 356L404 272L600 363V500H0" fill="#25252e"/>
+<path d="M95 447L155 343L362 323L471 449L600 500H0Z" fill="#18191f"/>
+<g fill="url(#stone)" stroke="#8f7c62" stroke-width="1.5"><path d="M171 401V282H191V268H207V282H225V268H242V282H260V401Z"/><path d="M325 401V253H344V238H360V253H379V238H395V253H414V401Z"/><path d="M233 409V326H252V310H269V326H290V310H307V326H341V409Z"/><path d="M273 330V213H310V330Z"/><path d="M266 213L291 168L317 213Z" fill="#442c2c"/></g>
+<path d="M171 401V282H260V401ZM325 401V253H414V401ZM233 409V326H341V409ZM273 330V213H310V330Z" fill="url(#masonry)"/>
+<path d="M275 409V377Q291 344 307 377V409" fill="#111217" stroke="#8f7c62"/><g fill="#c99553"><path d="M200 321V307Q207 294 214 307V321ZM355 294V280Q362 267 369 280V294ZM286 250V237Q291 229 297 237V250Z"/></g>
+<path d="M291 168V132L326 144L291 152" fill="#963e34" stroke="#b89b69"/>
+<!-- Ink-cut dragon silhouette, with sweeping wings and a barbed tail. -->
+<g fill="#18181e" stroke="#b89b69" stroke-width="1.6" stroke-linejoin="round"><path d="M309 136Q265 115 234 142Q207 166 175 151Q135 138 122 170Q141 145 174 169Q216 188 249 158L290 153Q310 161 333 146L356 139L348 128L368 122L353 117L351 104L341 116L326 118Z"/><path d="M272 141Q243 72 157 55L178 88L145 113Q188 100 205 126L221 103L245 147Z"/><path d="M299 139Q322 63 386 40L373 74L414 90Q372 88 359 111L343 92L319 143Z"/><path d="M263 154L253 180L241 181L255 185L274 162M302 156L315 177L326 178L313 183L293 163"/></g>
+<g fill="none" stroke="#9e8059" stroke-width="1" opacity=".7"><path d="M268 141L157 55M268 141L178 88M268 141L205 126M306 139L386 40M306 139L373 74M306 139L359 111"/></g><circle cx="347" cy="124" r="2" fill="#efbf65"/>
+<path d="M0 436Q130 410 244 441T600 427M0 466Q195 447 351 470T600 460" fill="none" stroke="#afa08a" stroke-opacity=".12" stroke-width="12"/>
+<g fill="#111217"><path d="M28 455L52 352L76 455ZM62 482L92 374L120 482ZM478 463L507 349L536 463ZM522 492L562 357L598 492Z"/></g>
+<rect x="17" y="17" width="566" height="466" fill="none" stroke="#b89b69" stroke-opacity=".4"/><path d="M27 39V27H39M561 27H573V39M27 461V473H39M561 473H573V461" fill="none" stroke="#b89b69"/>
+</svg>
