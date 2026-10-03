@@ -11,9 +11,75 @@
   const link = document.getElementById('github-link');
   let lastRequest;
   let activeController;
+  const connections = document.getElementById('github-connections');
+  const connectionStates = ['followers', 'following'].map(kind => {
+    const state = {
+      kind,
+      list: document.getElementById(`github-${kind}`),
+      status: document.getElementById(`github-${kind}-status`),
+      more: document.getElementById(`github-${kind}-more`)
+    };
+    state.more.addEventListener('click', () => loadConnections(state));
+    return state;
+  });
+
+  async function loadConnections(state) {
+    const controller = new AbortController();
+    state.controller = controller;
+    state.more.disabled = true;
+    state.status.textContent = `Loading ${state.kind}…`;
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    try {
+      const response = await fetch(`https://api.github.com/users/${encodeURIComponent(state.login)}/${state.kind}?per_page=30&page=${state.page}`, {
+        headers: { Accept: 'application/vnd.github+json' },
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error(response.status === 403 || response.status === 429
+        ? 'GitHub is limiting requests or denying access. Try again later.'
+        : `Unable to load ${state.kind} (HTTP ${response.status}).`);
+      const users = await response.json();
+      if (state.controller !== controller) return;
+      if (!Array.isArray(users) || users.some(user => typeof user.login !== 'string')) {
+        throw new Error('GitHub returned an unexpected user list.');
+      }
+      const fragment = document.createDocumentFragment();
+      users.forEach(user => {
+        const item = document.createElement('li');
+        const account = document.createElement('a');
+        account.href = `https://github.com/${encodeURIComponent(user.login)}`;
+        account.textContent = user.login;
+        item.appendChild(account);
+        fragment.appendChild(item);
+      });
+      state.list.appendChild(fragment);
+      state.page += 1;
+      state.more.hidden = !/rel="next"/.test(response.headers.get('Link') || '');
+      state.more.textContent = `Load more ${state.kind}`;
+      state.status.textContent = state.list.children.length
+        ? `Showing ${state.list.children.length} ${state.kind}.`
+        : `No ${state.kind} yet.`;
+    } catch (error) {
+      if (state.controller !== controller) return;
+      state.status.textContent = error.name === 'AbortError'
+        ? 'GitHub took too long to respond. Please retry.'
+        : error instanceof TypeError ? 'Unable to reach GitHub. Check your connection and retry.' : error.message;
+      state.more.hidden = false;
+      state.more.textContent = `Retry ${state.kind}`;
+    } finally {
+      clearTimeout(timeout);
+      if (state.controller === controller) state.more.disabled = false;
+    }
+  }
 
   async function request(endpoint, render) {
     activeController?.abort();
+    connections.hidden = true;
+    connectionStates.forEach(state => {
+      state.controller?.abort();
+      state.controller = null;
+      state.list.replaceChildren();
+      state.more.hidden = true;
+    });
     const controller = new AbortController();
     activeController = controller;
     lastRequest = () => request(endpoint, render);
@@ -72,6 +138,12 @@
       link.hidden = false;
       details.hidden = false;
       status.textContent = `Profile loaded for ${profile.login}.`;
+      connections.hidden = false;
+      connectionStates.forEach(state => {
+        state.login = profile.login;
+        state.page = 1;
+        loadConnections(state);
+      });
     });
   }
 

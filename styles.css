@@ -164,5 +164,13 @@ kbd { font: .8rem monospace; padding: 1px 4px; background: #344035; border-radiu
 .github-search-controls input { min-width: 0; flex: 1; }
 .github-search-controls button { flex-shrink: 0; }
 .github-results { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.github-connections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.github-connections[hidden], .github-connections button[hidden] { display: none; }
+.github-connections section { min-width: 0; border-top: 1px solid var(--line); padding-top: 18px; }
+.github-connections p { color: #64685c; font-size: .85rem; }
+.github-user-list { list-style: none; padding: 0; margin: 12px 0; }
+.github-user-list a { display: block; padding: 8px 0; color: var(--accent); overflow-wrap: anywhere; }
+.github-user-list a:hover { text-decoration: underline; }
+@media (max-width: 600px) { .github-connections { grid-template-columns: 1fr; } }
 .github-actions a[hidden] { display: none; }
 @media (max-width: 600px) { .github-search-controls { flex-direction: column; } }

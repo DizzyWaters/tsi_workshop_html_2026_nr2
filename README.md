@@ -39,3 +39,7 @@ from `/users/USERNAME`, including avatar, name, bio, and account statistics.
 No API key or installation is needed. Loading, empty results, timeout, and
 request errors are shown with a retry option. Anonymous GitHub requests are
 rate limited. The card stays aligned with the application form.
+
+Selected profiles also show followers and following lists with links to their
+GitHub accounts. Lists load 30 accounts at a time; use Load more to view the next
+page. Each list supports empty states and independent retries.
