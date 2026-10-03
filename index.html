@@ -39,18 +39,7 @@
       </div>
     </section>
 
-    <section id="nursery" class="roguelike" aria-labelledby="game-title">
-      <div class="rogue-heading"><div><p class="eyebrow">Two floors. One life. A very small adventure.</p><h2 id="game-title">Tiny Rogue: The Ember Vault</h2></div><img src="assets/torch.svg" width="48" height="64" alt="Animated dungeon torch"></div>
-      <p class="rogue-intro">Explore the ruined shelter, descend to the second floor, and recover the dragon egg. Monsters move only when you take a turn. Death ends your run; a new expedition creates a new dungeon.</p>
-      <div id="rogue-stats" class="rogue-stats" aria-label="Player statistics"></div>
-      <div class="rogue-layout">
-        <div><div id="dungeon" class="dungeon" tabindex="0" role="group" aria-label="Dungeon map. Use arrow keys or WASD to move; walk into monsters to attack." aria-describedby="rogue-help"></div><p class="map-caption">@ you · # wall · . floor · r rat · g goblin · ! potion · % food · $ gold · &gt; stairs · * egg</p></div>
-        <aside class="rogue-sidebar"><img src="assets/egg.svg" width="64" height="72" alt="The glowing dragon egg you must recover"><h3>Recover the egg</h3><p id="rogue-help">Click the map to use <kbd>WASD</kbd>, arrows, or <kbd>HJKL</kbd>. Bump monsters to attack. Walk over items to collect them.</p><p><kbd>P</kbd> drink potion<br><kbd>.</kbd> wait one turn<br><kbd>&gt;</kbd> descend on stairs</p><div class="direction-pad" aria-label="Movement controls"><button type="button" name="move_up" data-command="up" aria-label="Move up">↑</button><button type="button" name="move_left" data-command="left" aria-label="Move left">←</button><button type="button" name="wait" data-command="wait" aria-label="Wait one turn">·</button><button type="button" name="move_right" data-command="right" aria-label="Move right">→</button><button type="button" name="move_down" data-command="down" aria-label="Move down">↓</button></div><div class="rogue-buttons"><button type="button" name="drink_potion" data-command="potion">Potion [P]</button><button type="button" name="descend" data-command="descend">Stairs [&gt;]</button></div><button id="restart-game" type="button" name="restart_game">New expedition ↻</button></aside>
-      </div>
-      <p id="game-status" role="status" class="rogue-status">Your expedition awaits.</p>
-      <ol id="rogue-log" class="rogue-log" aria-label="Recent dungeon events"></ol>
-      <noscript><p>Enable JavaScript to play Tiny Rogue.</p></noscript>
-    </section>
+
 
     <div class="application-heading"><p class="eyebrow">The guardian’s oath</p><h2>Write your name in the chronicle.</h2><p>Tell the Council of your hearth and your courage. A new bond awaits.</p></div>
 
@@ -144,6 +133,19 @@
       </div>
       <p class="help demo-note">Fictional classroom demo. Preview uses GET; sending to the Council uses POST with a different destination. These example routes require a server and do not process applications.</p>
     </form>
+    <section id="nursery" class="roguelike" aria-labelledby="game-title">
+      <div class="rogue-heading"><div><p class="eyebrow">Two floors. One life. A very small adventure.</p><h2 id="game-title">Tiny Rogue: The Ember Vault</h2></div><img src="assets/torch.svg" width="48" height="64" alt="Animated dungeon torch"></div>
+      <p class="rogue-intro">Explore the ruined shelter, descend to the second floor, and recover the dragon egg. Monsters move only when you take a turn. Death ends your run; a new expedition creates a new dungeon.</p>
+      <div id="rogue-stats" class="rogue-stats" aria-label="Player statistics"></div>
+      <div class="rogue-layout">
+        <div><div id="dungeon" class="dungeon" tabindex="0" role="group" aria-label="Dungeon map. Use arrow keys or WASD to move; walk into monsters to attack." aria-describedby="rogue-help"></div><p class="map-caption">@ you · # wall · . floor · r rat · g goblin · ! potion · % food · $ gold · &gt; stairs · * egg</p></div>
+        <aside class="rogue-sidebar"><img src="assets/egg.svg" width="64" height="72" alt="The glowing dragon egg you must recover"><h3>Recover the egg</h3><p id="rogue-help">Click the map to use <kbd>WASD</kbd>, arrows, or <kbd>HJKL</kbd>. Bump monsters to attack. Walk over items to collect them.</p><p><kbd>P</kbd> drink potion<br><kbd>.</kbd> wait one turn<br><kbd>&gt;</kbd> descend on stairs</p><div class="direction-pad" aria-label="Movement controls"><button type="button" name="move_up" data-command="up" aria-label="Move up">↑</button><button type="button" name="move_left" data-command="left" aria-label="Move left">←</button><button type="button" name="wait" data-command="wait" aria-label="Wait one turn">·</button><button type="button" name="move_right" data-command="right" aria-label="Move right">→</button><button type="button" name="move_down" data-command="down" aria-label="Move down">↓</button></div><div class="rogue-buttons"><button type="button" name="drink_potion" data-command="potion">Potion [P]</button><button type="button" name="descend" data-command="descend">Stairs [&gt;]</button></div><button id="restart-game" type="button" name="restart_game">New expedition ↻</button></aside>
+      </div>
+      <p id="game-status" role="status" class="rogue-status">Your expedition awaits.</p>
+      <ol id="rogue-log" class="rogue-log" aria-label="Recent dungeon events"></ol>
+      <noscript><p>Enable JavaScript to play Tiny Rogue.</p></noscript>
+    </section>
+
     <section class="github-profile" aria-labelledby="github-title" aria-busy="false">
       <p class="eyebrow">The adventurers’ guild</p>
       <h2 id="github-title">Search GitHub users</h2>
