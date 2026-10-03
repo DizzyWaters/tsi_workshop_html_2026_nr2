@@ -1,64 +1,58 @@
 'use strict';
 
-const careButtons = document.querySelectorAll('[data-care]');
-const statusText = document.getElementById('game-status');
-const mood = document.getElementById('dragon-mood');
-const dragon = document.getElementById('game-dragon');
-let needs;
-let turn;
-let finished;
+const dungeon = document.getElementById('dungeon');
+const commandButtons = document.querySelectorAll('[data-command]');
+let expedition;
 
-function render() {
-  for (const [need, value] of Object.entries(needs)) {
-    const meter = document.getElementById(`${need}-meter`);
-    meter.value = value;
-    meter.textContent = `${value}%`;
-    document.getElementById(`${need}-value`).textContent = `${value}%`;
+function renderDungeon() {
+  const visible = expedition.visible();
+  const fragment = document.createDocumentFragment();
+  for (let y = 0; y < expedition.height; y++) {
+    for (let x = 0; x < expedition.width; x++) {
+      const key = `${x},${y}`;
+      const tile = document.createElement('span');
+      let symbol = ' '; let kind = 'unseen';
+      if (expedition.explored.has(key)) {
+        symbol = expedition.map[y][x];
+        kind = visible.has(key) ? (symbol === '#' ? 'wall' : 'floor') : 'remembered';
+        if (visible.has(key)) {
+          const item = expedition.items.find(item => item.x === x && item.y === y);
+          const enemy = expedition.enemies.find(enemy => enemy.x === x && enemy.y === y);
+          if (item) { symbol = item.symbol; kind = 'item'; }
+          if (enemy) { symbol = enemy.symbol; kind = 'enemy'; }
+        }
+      }
+      if (x === expedition.player.x && y === expedition.player.y) { symbol = '@'; kind = 'player'; }
+      tile.textContent = symbol; tile.className = `tile ${kind}`;
+      if (expedition.lastHit === key) tile.classList.add('hit');
+      tile.setAttribute('aria-hidden', 'true'); fragment.appendChild(tile);
+    }
   }
-  careButtons.forEach(button => { button.disabled = finished; });
+  dungeon.replaceChildren(fragment);
+  dungeon.classList.toggle('game-over', expedition.over);
+  const p = expedition.player;
+  document.getElementById('rogue-stats').textContent = `FLOOR ${expedition.level}/2   ♥ ${p.hp}/${p.maxHp}   POTIONS ${p.potions}   GOLD ${p.gold}   FOOD ${p.food}   TURN ${expedition.turn}`;
+  document.getElementById('game-status').textContent = expedition.over
+    ? (expedition.won ? `You rescued the dragon egg! ${p.gold} gold collected in ${expedition.turn} turns.` : 'Your expedition has ended. Start a new one to try again.')
+    : `Floor ${expedition.level}: ${expedition.level === 1 ? 'Find the stairs (>) and descend.' : 'Find the dragon egg (*).'} Position ${p.x + 1}, ${p.y + 1}. ${expedition.messages.at(-1)}`;
+  document.getElementById('rogue-log').replaceChildren(...expedition.messages.slice(-4).reverse().map(message => {
+    const li = document.createElement('li'); li.textContent = message; return li;
+  }));
+  commandButtons.forEach(button => { button.disabled = expedition.over; });
 }
 
-function restart() {
-  needs = { hunger: 55, joy: 55, energy: 55 };
-  turn = 0;
-  finished = false;
-  mood.textContent = 'Ready for snacks!';
-  statusText.textContent = 'Turn 0 of 8 · Your hatchling is getting to know you.';
-  dragon.classList.remove('celebrate');
-  render();
-}
-
-function care(action) {
-  if (finished) return;
-  const effects = {
-    feed: { hunger: 30, joy: -8, energy: -12 },
-    play: { hunger: -12, joy: 30, energy: -16 },
-    rest: { hunger: -10, joy: -8, energy: 35 }
-  };
-  if (!effects[action]) return;
-  turn += 1;
-  for (const need of Object.keys(needs)) {
-    needs[need] = Math.max(0, Math.min(100, needs[need] + effects[action][need]));
-  }
-  const messages = { feed: 'Crunch! An excellent snack.', play: 'A very tiny, very happy roar!', rest: 'Zzz… dreaming of treasure.' };
-  mood.textContent = messages[action];
-  if (Object.values(needs).some(value => value === 0)) {
-    finished = true;
-    mood.textContent = 'Time for a little extra care.';
-    statusText.textContent = `Turn ${turn} of 8 · A need reached zero. Try again and balance food, play, and rest!`;
-  } else if (turn === 8) {
-    finished = true;
-    mood.textContent = 'Best friends forever!';
-    statusText.textContent = '8 of 8 turns · You earned your Dragon Guardian badge! ✦';
-    dragon.classList.add('celebrate');
-  } else {
-    statusText.textContent = `Turn ${turn} of 8 · ${messages[action]}`;
-  }
-  render();
-}
-
-careButtons.forEach(button => button.addEventListener('click', () => care(button.dataset.care)));
-document.getElementById('restart-game').addEventListener('click', restart);
+function command(action) { expedition.act(action); renderDungeon(); }
+function startExpedition() { expedition = new TinyRogue(); renderDungeon(); }
+commandButtons.forEach(button => button.addEventListener('click', () => command(button.dataset.command)));
+document.getElementById('restart-game').addEventListener('click', () => {
+  startExpedition(); dungeon.focus({ preventScroll: true });
+});
+dungeon.addEventListener('keydown', event => {
+  if (event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
+  const keys = { ArrowUp: 'up', w: 'up', k: 'up', ArrowDown: 'down', s: 'down', j: 'down', ArrowLeft: 'left', a: 'left', h: 'left', ArrowRight: 'right', d: 'right', l: 'right', p: 'potion', '.': 'wait', '>': 'descend' };
+  const action = keys[event.key] || keys[event.key.toLowerCase()];
+  if (action) { event.preventDefault(); command(action); }
+});
 document.querySelectorAll('[data-species]').forEach(button => {
   button.addEventListener('click', () => {
     const species = document.getElementById('species');
@@ -66,4 +60,4 @@ document.querySelectorAll('[data-species]').forEach(button => {
     species.focus();
   });
 });
-restart();
+startExpedition();

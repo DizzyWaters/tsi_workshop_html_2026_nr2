@@ -1,2 +1,31 @@
 # tsi_workshop_html_2026_nr2
 This is the class work from TSI
+
+Open `index.html` in a browser. No installation or server is needed to play.
+
+The Dragon Adoption Bureau form includes all required HTML control types.
+Its GET/POST destinations are fictional and need a backend to process submissions.
+
+## Tiny Rogue: The Ember Vault
+
+A simple classic-inspired ASCII roguelike with exactly two randomly generated
+floors, connected rooms and corridors, fog of war, turn-based monsters,
+bump-to-attack combat, healing potions, hunger, food, gold, and permanent death.
+Find the stairs on floor one, then recover the dragon egg on floor two to win.
+
+Click or tab into the dungeon map before using the keyboard:
+
+- Arrow keys, WASD, or HJKL: move; moving into a monster attacks it.
+- P: drink a healing potion.
+- Period: wait one turn.
+- Greater-than (`>`): descend while standing on stairs.
+- New expedition: reset the run with a new dungeon.
+
+On-screen buttons support touch controls. Game keys only operate while the map
+has focus, so typing in the application form works normally. Walls and invalid
+commands do not consume turns. Monsters act after each successful action.
+
+Original torch, egg, and combat slash SVG assets are in `assets/`.
+Animations respect the reduced-motion preference.
+
+Run game tests with `node --test tests/rogue.test.js`.

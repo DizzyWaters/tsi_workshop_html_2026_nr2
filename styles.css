@@ -43,7 +43,7 @@ button:hover { background: #663724; }
 footer { text-align: center; padding: 26px 0; color: #74796b; font-size: .75rem; }
 @media (max-width: 600px) { main { padding: 32px 18px 18px; } form { padding: 22px 18px; } .grid { grid-template-columns: 1fr; } .actions button { width: 100%; } }
 
-/* Illustrated shelter, warm paper, and a playful practice nursery. */
+/* Illustrated shelter and warm paper. */
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 body { background: radial-gradient(ellipse at 90% 10%, #e5ebd8 0, transparent 40%), #f5f2e9; }
 main { max-width: 1120px; padding-top: 26px; }
@@ -76,29 +76,10 @@ h3 small { display: block; font: 500 .7rem 'DM Sans', sans-serif; color: #73786b
 .card-copy p { color: #64685c; font-size: .84rem; min-height: 3em; }
 .card-copy button { background: transparent; border: 0; padding: 0; color: var(--accent); }
 .card-copy button:hover { text-decoration: underline; }
-.nursery { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border-radius: 24px; background: #e6eadb; border: 1px solid #cdd5c0; margin-bottom: 64px; }
-.game-scene { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; background: #d9e1c9; }
-.scene-label { text-transform: uppercase; letter-spacing: .14em; font-size: .65rem; color: #536347; }
-.game-scene img { width: 100%; height: auto; border-radius: 20px; margin: 20px 0; }
-.mood { background: #fffdf0; padding: 8px 16px; border-radius: 30px; font-size: .8rem; }
-.game-content { padding: 32px; }
-.game-content h2 { margin-bottom: 12px; }
-.game-content > p:not(.eyebrow) { font-size: .84rem; color: #58614f; }
-.meters { margin: 22px 0; }
-.meters label { display: flex; justify-content: space-between; margin: 12px 0 3px; }
-.meters meter { display: block; width: 100%; height: 18px; accent-color: #698252; }
-meter::-webkit-meter-bar { background: #d0d7c3; border: 0; border-radius: 20px; }
-meter::-webkit-meter-optimum-value { background: #698252; border-radius: 20px; }
-meter::-moz-meter-bar { background: #698252; }
-.game-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.game-actions button { background: #fffdf3; color: #3f5536; border-color: #b7c4a6; flex: 1; }
-.game-actions button:hover { background: #d4dfc5; }
 button:disabled { opacity: .5; cursor: default; }
 .text-button { border: 0; padding: 0; background: transparent; color: #526443; font-size: .8rem; text-decoration: underline; }
 .text-button:hover { background: transparent; color: #293d22; }
 #game-status { min-height: 3.2em; }
-.celebrate { animation: happy-bounce .65s ease-in-out 3; }
-@keyframes happy-bounce { 50% { transform: translateY(-12px) rotate(-3deg); } }
 .application-heading { text-align: center; margin-bottom: 30px; }
 .application-heading h2 { margin-bottom: 12px; }
 .application-heading > p:last-child { color: #64685c; font-size: .9rem; }
@@ -113,8 +94,6 @@ input:hover, select:hover, textarea:hover { border-color: #8a9a78; }
   .hero { gap: 20px; }
   .dragon-cards { gap: 12px; }
   .card-copy { padding: 14px; }
-  .nursery { grid-template-columns: 1fr 1fr; }
-  .game-content { padding: 22px; }
 }
 @media (max-width: 600px) {
   .navigation { flex-direction: column; gap: 12px; }
@@ -125,11 +104,48 @@ input:hover, select:hover, textarea:hover { border-color: #8a9a78; }
   .portrait { aspect-ratio: 1.7; }
   .card-copy { padding: 20px; }
   .card-copy p { min-height: 0; }
-  .nursery { grid-template-columns: 1fr; }
-  .game-scene img { max-width: 300px; }
   form { padding: 22px 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.roguelike { background: #171e1c; color: #d9ddc6; border: 1px solid #394b3e; border-radius: 20px; padding: 30px; margin-bottom: 64px; box-shadow: 0 20px 40px #24332620; }
+.rogue-heading { display: flex; justify-content: space-between; gap: 14px; align-items: center; }
+.rogue-heading .eyebrow { color: #bfa371; }
+.rogue-heading h2 { color: #f2dfae; margin-bottom: 12px; }
+.rogue-intro { color: #acb9a7; font-size: .88rem; max-width: 780px; }
+.rogue-stats { font: 700 .84rem/1.8 monospace; white-space: pre-wrap; padding: 12px 16px; background: #26342b; border-radius: 8px; color: #d9c790; margin: 22px 0; }
+.rogue-layout { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 26px; }
+.dungeon { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); padding: 12px; background: #0b1210; border: 1px solid #3b5040; border-radius: 8px; font-family: 'Courier New', monospace; user-select: none; cursor: crosshair; }
+.dungeon:focus-visible { outline: 2px solid #e6c577; outline-offset: 4px; }
+.tile { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; font-size: clamp(10px, 1.7vw, 20px); line-height: 1; position: relative; }
+.wall { color: #7c9279; background: #202d24; }
+.floor { color: #526348; }
+.remembered { color: #3f4940; background: #141c17; }
+.player { color: #fff3ba; background: #52603b; font-weight: bold; text-shadow: 0 0 8px #f4d477; }
+.enemy { color: #eb9074; font-weight: bold; }
+.item { color: #edcb77; }
+.hit::after { content: ''; position: absolute; inset: 0; background: url('assets/slash.svg') center/contain no-repeat; animation: strike .35s ease-out forwards; pointer-events: none; }
+@keyframes strike { from { opacity: 1; transform: scale(.5); } to { opacity: 0; transform: scale(1.5); } }
+.game-over { border-color: #b59259; }
+.map-caption { font: .72rem/1.8 monospace; color: #9dad94; }
+.rogue-sidebar h3 { color: #ead6a6; font-size: 1.3rem; }
+.rogue-sidebar p { font-size: .78rem; color: #b0bba5; }
+kbd { font: .8rem monospace; padding: 1px 4px; background: #344035; border-radius: 3px; color: #ebdbb3; }
+.direction-pad { display: grid; grid-template-columns: repeat(3, 42px); gap: 5px; margin: 16px 0; }
+.direction-pad button { padding: 6px; min-height: 40px; }
+.direction-pad button:first-child { grid-column: 2; }
+.direction-pad button:nth-child(2) { grid-column: 1; grid-row: 2; }
+.direction-pad button:nth-child(3) { grid-column: 2; grid-row: 2; }
+.direction-pad button:nth-child(4) { grid-column: 3; grid-row: 2; }
+.direction-pad button:last-child { grid-column: 2; grid-row: 3; }
+.rogue-sidebar button { background: #344835; color: #e8dab2; border-color: #627556; font: .75rem monospace; }
+.rogue-sidebar button:hover:not(:disabled) { background: #4a6140; }
+.rogue-buttons { display: flex; gap: 6px; margin-bottom: 10px; }
+.rogue-buttons button { padding: 8px; }
+.rogue-status { border-top: 1px solid #3b4b3c; padding-top: 18px; font-size: .85rem; color: #edcc83; }
+.rogue-log { padding-left: 20px; font: .76rem/1.8 monospace; color: #9faf96; min-height: 7.2em; }
+@media (max-width: 800px) { .rogue-layout { grid-template-columns: 1fr; } .rogue-sidebar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; } .rogue-sidebar p { flex-basis: 100%; margin: 0; } .tile { font-size: clamp(10px, 2.8vw, 23px); } }
+@media (max-width: 600px) { .roguelike { padding: 18px 12px; } .dungeon { padding: 5px; } .rogue-heading h2 { font-size: 1.7rem; } .rogue-stats { font-size: .72rem; } }

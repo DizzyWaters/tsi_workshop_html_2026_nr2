@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dragon Adoption Bureau — Application</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="rogue.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
   <main>
     <nav class="navigation" aria-label="Main navigation">
       <a class="brand" href="#">✦ Dragon Adoption Bureau</a>
-      <div><a href="#residents">Meet the dragons</a><a href="#nursery">Try dragon care</a><a href="#adoption">Apply now ↗</a></div>
+      <div><a href="#residents">Meet the dragons</a><a href="#nursery">Play Tiny Rogue</a><a href="#adoption">Apply now ↗</a></div>
     </nav>
     <header class="hero">
       <div class="hero-copy">
@@ -37,18 +38,17 @@
       </div>
     </section>
 
-    <section id="nursery" class="nursery" aria-labelledby="game-title">
-      <div class="game-scene"><span class="scene-label">The practice nursery</span><img id="game-dragon" src="assets/dragon.svg" alt="Your practice hatchling" width="600" height="500"><span id="dragon-mood" class="mood">Ready for snacks!</span></div>
-      <div class="game-content">
-        <p class="eyebrow">A tiny guardian challenge</p>
-        <h2 id="game-title">Can you earn their trust?</h2>
-        <p>Choose the care your hatchling needs most. Keep all three needs above zero for 8 turns to earn your guardian badge. Every action uses a little energy!</p>
-        <div class="meters"><label for="hunger-meter">Full tummy <span id="hunger-value">55%</span></label><meter id="hunger-meter" min="0" max="100" value="55">55%</meter><label for="joy-meter">Happiness <span id="joy-value">55%</span></label><meter id="joy-meter" min="0" max="100" value="55">55%</meter><label for="energy-meter">Energy <span id="energy-value">55%</span></label><meter id="energy-meter" min="0" max="100" value="55">55%</meter></div>
-        <div class="game-actions"><button type="button" name="feed_dragon" data-care="feed">🍎 Feed</button><button type="button" name="play_dragon" data-care="play">✨ Play</button><button type="button" name="rest_dragon" data-care="rest">🌙 Rest</button></div>
-        <p id="game-status" role="status">Turn 0 of 8 · Your hatchling is getting to know you.</p>
-        <button id="restart-game" class="text-button" type="button" name="restart_game">Start again ↻</button>
-        <noscript><p>Enable JavaScript to play the hatchling care game.</p></noscript>
+    <section id="nursery" class="roguelike" aria-labelledby="game-title">
+      <div class="rogue-heading"><div><p class="eyebrow">Two floors. One life. A very small adventure.</p><h2 id="game-title">Tiny Rogue: The Ember Vault</h2></div><img src="assets/torch.svg" width="48" height="64" alt="Animated dungeon torch"></div>
+      <p class="rogue-intro">Explore the ruined shelter, descend to the second floor, and recover the dragon egg. Monsters move only when you take a turn. Death ends your run; a new expedition creates a new dungeon.</p>
+      <div id="rogue-stats" class="rogue-stats" aria-label="Player statistics"></div>
+      <div class="rogue-layout">
+        <div><div id="dungeon" class="dungeon" tabindex="0" role="group" aria-label="Dungeon map. Use arrow keys or WASD to move; walk into monsters to attack." aria-describedby="rogue-help"></div><p class="map-caption">@ you · # wall · . floor · r rat · g goblin · ! potion · % food · $ gold · &gt; stairs · * egg</p></div>
+        <aside class="rogue-sidebar"><img src="assets/egg.svg" width="64" height="72" alt="The glowing dragon egg you must recover"><h3>Recover the egg</h3><p id="rogue-help">Click the map to use <kbd>WASD</kbd>, arrows, or <kbd>HJKL</kbd>. Bump monsters to attack. Walk over items to collect them.</p><p><kbd>P</kbd> drink potion<br><kbd>.</kbd> wait one turn<br><kbd>&gt;</kbd> descend on stairs</p><div class="direction-pad" aria-label="Movement controls"><button type="button" name="move_up" data-command="up" aria-label="Move up">↑</button><button type="button" name="move_left" data-command="left" aria-label="Move left">←</button><button type="button" name="wait" data-command="wait" aria-label="Wait one turn">·</button><button type="button" name="move_right" data-command="right" aria-label="Move right">→</button><button type="button" name="move_down" data-command="down" aria-label="Move down">↓</button></div><div class="rogue-buttons"><button type="button" name="drink_potion" data-command="potion">Potion [P]</button><button type="button" name="descend" data-command="descend">Stairs [&gt;]</button></div><button id="restart-game" type="button" name="restart_game">New expedition ↻</button></aside>
       </div>
+      <p id="game-status" role="status" class="rogue-status">Your expedition awaits.</p>
+      <ol id="rogue-log" class="rogue-log" aria-label="Recent dungeon events"></ol>
+      <noscript><p>Enable JavaScript to play Tiny Rogue.</p></noscript>
     </section>
 
     <div class="application-heading"><p class="eyebrow">Make room for a little magic</p><h2>Your next adventure starts here.</h2><p>Tell us a little about yourself. Our council will handle the matchmaking.</p></div>
