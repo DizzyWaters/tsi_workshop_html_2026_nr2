@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragon Adoption Bureau — Application</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="#">✦ Dragon Adoption Bureau</a>
+      <div><a href="#residents">Meet the dragons</a><a href="#nursery">Try dragon care</a><a href="#adoption">Apply now ↗</a></div>
+    </nav>
+    <header class="hero">
+      <div class="hero-copy">
+      <p class="eyebrow">Department of mildly dangerous companionship</p>
+      <h1>A little fire.<br>A lifelong friend.</h1>
+      <p class="intro">Apply to the Dragon Adoption Bureau. Find a companion who will warm your heart, your home, and occasionally your curtains.</p>
+      <span class="badge">Applications open · Hatchling season 2026</span>
+      <a class="hero-link" href="#residents">Meet your future companion ↓</a>
+      </div>
+      <figure class="hero-art">
+        <img src="assets/dragon.svg" alt="A friendly green dragon with golden horns resting in a magical garden" width="600" height="500">
+        <figcaption><span class="live-dot"></span> Meet Fern. Professional marshmallow toaster.</figcaption>
+      </figure>
+    </header>
+
+    <section id="residents" class="residents" aria-labelledby="residents-title">
+      <p class="eyebrow">Small wings. Big personalities.</p>
+      <h2 id="residents-title">Someone here is waiting for you.</h2>
+      <div class="dragon-cards">
+        <article class="dragon-card"><div class="portrait fern"><img src="assets/dragon.svg" alt="Fern, a leafy green forest dragon" width="600" height="500" loading="lazy"><span>Gentle soul</span></div><div class="card-copy"><h3>Fern <small>Forest wyrm</small></h3><p>Loves garden naps. Accidentally grows flowers when sneezing.</p><button type="button" data-species="forest" name="choose_fern">Choose Fern ↗</button></div></article>
+        <article class="dragon-card"><div class="portrait ember"><img src="assets/dragon.svg" alt="Ember, a warm orange dragon with little wings" width="600" height="500" loading="lazy"><span>Pocket-sized trouble</span></div><div class="card-copy"><h3>Ember <small>Teacup dragon</small></h3><p>Steals biscuits. Sleeps in mugs. Thinks your kettle is a relative.</p><button type="button" data-species="teacup" name="choose_ember">Choose Ember ↗</button></div></article>
+        <article class="dragon-card"><div class="portrait storm"><img src="assets/dragon.svg" alt="Nimbus, a blue storm dragon with golden horns" width="600" height="500" loading="lazy"><span>Cloud enthusiast</span></div><div class="card-copy"><h3>Nimbus <small>Storm drake</small></h3><p>A little dramatic. Brings his own raincloud to every picnic.</p><button type="button" data-species="storm" name="choose_nimbus">Choose Nimbus ↗</button></div></article>
+      </div>
+    </section>
+
+    <section id="nursery" class="nursery" aria-labelledby="game-title">
+      <div class="game-scene"><span class="scene-label">The practice nursery</span><img id="game-dragon" src="assets/dragon.svg" alt="Your practice hatchling" width="600" height="500"><span id="dragon-mood" class="mood">Ready for snacks!</span></div>
+      <div class="game-content">
+        <p class="eyebrow">A tiny guardian challenge</p>
+        <h2 id="game-title">Can you earn their trust?</h2>
+        <p>Choose the care your hatchling needs most. Keep all three needs above zero for 8 turns to earn your guardian badge. Every action uses a little energy!</p>
+        <div class="meters"><label for="hunger-meter">Full tummy <span id="hunger-value">55%</span></label><meter id="hunger-meter" min="0" max="100" value="55">55%</meter><label for="joy-meter">Happiness <span id="joy-value">55%</span></label><meter id="joy-meter" min="0" max="100" value="55">55%</meter><label for="energy-meter">Energy <span id="energy-value">55%</span></label><meter id="energy-meter" min="0" max="100" value="55">55%</meter></div>
+        <div class="game-actions"><button type="button" name="feed_dragon" data-care="feed">🍎 Feed</button><button type="button" name="play_dragon" data-care="play">✨ Play</button><button type="button" name="rest_dragon" data-care="rest">🌙 Rest</button></div>
+        <p id="game-status" role="status">Turn 0 of 8 · Your hatchling is getting to know you.</p>
+        <button id="restart-game" class="text-button" type="button" name="restart_game">Start again ↻</button>
+        <noscript><p>Enable JavaScript to play the hatchling care game.</p></noscript>
+      </div>
+    </section>
+
+    <div class="application-heading"><p class="eyebrow">Make room for a little magic</p><h2>Your next adventure starts here.</h2><p>Tell us a little about yourself. Our council will handle the matchmaking.</p></div>
+
+    <aside class="notice">
+      <strong>Before you bring home a dragon</strong>
+      <p>A fireproof dwelling, a generous snack budget, and a healthy respect for tiny teeth are strongly encouraged.</p>
+    </aside>
+
+    <!-- This input is intentionally outside the form, but belongs to it. -->
+    <section class="reference">
+      <label for="referral">Who sent you? <span>(optional)</span></label>
+      <input type="text" id="referral" name="referral" form="adoption" placeholder="A wizard, a friend, an ominous prophecy…">
+    </section>
+
+    <form id="adoption" action="/adoption-preview" method="get">
+      <fieldset>
+        <legend><span>01</span> The aspiring dragon guardian</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="full-name">Full name / legendary title</label>
+            <input type="text" id="full-name" name="full_name" autocomplete="name" placeholder="Alex the Unscorched" required>
+          </div>
+          <div class="field">
+            <label for="email">Email for raven-free updates</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="alex@castle.example" required>
+          </div>
+          <div class="field">
+            <label for="arrival">Preferred homecoming date</label>
+            <input type="date" id="arrival" name="arrival_date" required>
+          </div>
+          <div class="field">
+            <label for="sheep">Monthly snack budget (sheep)</label>
+            <input type="number" id="sheep" name="monthly_sheep" min="1" max="1000" step="1" value="12" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>02</span> Your future fire-breathing friend</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="species">Preferred dragon species</label>
+            <select id="species" name="species" required>
+              <option value="">Choose your kind of chaos</option>
+              <option value="teacup">Teacup dragon — fits in a kettle</option>
+              <option value="forest">Forest wyrm — excellent at gardening</option>
+              <option value="storm">Storm drake — comes with thunder</option>
+              <option value="lava">Lava leviathan — needs a volcano</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="color">Dream scale color</label>
+            <input type="color" id="color" name="scale_color" value="#b95c36">
+          </div>
+        </div>
+        <div class="field range-field">
+          <label for="spice">Acceptable mischief level</label>
+          <input type="range" id="spice" name="mischief_level" min="1" max="10" value="5" aria-describedby="spice-help">
+          <p class="range-labels" id="spice-help"><span>1 · Toasts your bread</span><span>10 · Conquers your kingdom</span></p>
+        </div>
+        <fieldset class="choices">
+          <legend>Have you raised a mythical creature before?</legend>
+          <label for="experience-yes"><input type="radio" id="experience-yes" name="experience" value="yes" required> Yes, and I still have most of my eyebrows</label>
+          <label for="experience-no"><input type="radio" id="experience-no" name="experience" value="no"> No, but I have kept a houseplant alive</label>
+        </fieldset>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>03</span> Prepare the nest</legend>
+        <fieldset class="choices">
+          <legend>Available home amenities</legend>
+          <label for="cave"><input type="checkbox" id="cave" name="amenities" value="cave"> A cozy cave or suspiciously large garage</label>
+          <label for="treasure"><input type="checkbox" id="treasure" name="amenities" value="treasure"> A starter treasure hoard</label>
+          <label for="fireproof"><input type="checkbox" id="fireproof" name="amenities" value="fireproof"> Fireproof furniture and curtains</label>
+        </fieldset>
+        <div class="field">
+          <label for="home-photo">Upload a photo of your lair <span>(optional)</span></label>
+          <input type="file" id="home-photo" name="home_photo" accept="image/*" aria-describedby="upload-help">
+          <p class="help" id="upload-help">Choose an image. The POST application button sends the file; GET preview sends only its filename.</p>
+        </div>
+        <div class="field">
+          <label for="story">Why would a dragon feel at home with you?</label>
+          <textarea id="story" name="guardian_story" rows="5" maxlength="2000" placeholder="Tell us about your home, your habits, and your policy on indoor bonfires…" required></textarea>
+        </div>
+        <label class="agreement" for="consent"><input type="checkbox" id="consent" name="accept_dragon_risks" value="yes" required> I understand that “house-trained” does not mean “house-fire-trained.”</label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" name="submission" value="preview">Preview application <span>↗</span></button>
+        <button class="secondary" type="submit" name="submission" value="apply" formmethod="post" formaction="/dragon-council/urgent-hatchling-placement" formenctype="multipart/form-data">Send to the Dragon Council</button>
+      </div>
+      <p class="help demo-note">Fictional classroom demo. Preview uses GET; sending to the Council uses POST with a different destination. These example routes require a server and do not process applications.</p>
+    </form>
+    <footer>Dragon Adoption Bureau · Established sometime before the last ice age.</footer>
+  </main>
+</body>
+</html>
